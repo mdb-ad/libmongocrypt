@@ -12,6 +12,9 @@
  * kms_request_new functions.
  */
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    if (size > UINT32_MAX) {
+        return 0;
+    }
     kms_response_parser_t *parser = NULL;
     parser = kms_response_parser_new();
     if (parser != NULL) {
